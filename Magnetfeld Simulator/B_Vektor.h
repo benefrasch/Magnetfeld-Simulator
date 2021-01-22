@@ -1,9 +1,15 @@
 #pragma once
 #include <tuple>
+
+struct Vektor
+{
+	float x, y, z;
+};
+
 static class B_Vektor
 {
 
 public:
-	 static std::tuple<float, float, float> vektor(float x, float y, float z);
+	 static Vektor vektor(float x, float y, float z);
 };
 
