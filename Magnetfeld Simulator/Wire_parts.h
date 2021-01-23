@@ -2,13 +2,12 @@
 #include <vector>
 struct wire_part
 {
-	float x;
-	float y;
-	float z;
-	float rotation_x;
-	float rotation_y;
-	float rotation_z;
-	float length;
+	long double x;
+	long double y;
+	long double z;
+	long double rotation_x; //from y to z axis
+	long double rotation_z; //from x to y axis
+	long double length;
 };
 
 static class Wire_parts {

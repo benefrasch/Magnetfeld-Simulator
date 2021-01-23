@@ -3,13 +3,13 @@
 
 struct Vektor
 {
-	float x, y, z;
+	double x, y, z;
 };
 
 static class B_Vektor
 {
 
 public:
-	 static Vektor vektor(float x, float y, float z);
+	 static Vektor vektor(long double x, long double y, long double z);
 };
 
