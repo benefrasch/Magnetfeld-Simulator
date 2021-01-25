@@ -1,5 +1,9 @@
 #pragma once
 #include <tuple>
+#include <vector>
+#include "Wire_parts.h"
+#include <math.h>
+#include <iostream>
 
 struct Vektor
 {
@@ -10,6 +14,6 @@ static class B_Vektor
 {
 
 public:
-	 static Vektor vektor(long double x, long double y, long double z);
+	 static Vektor vektor(std::vector<wire_part> * parts,long double x, long double y, long double z);
 };
 

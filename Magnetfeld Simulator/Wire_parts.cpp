@@ -2,9 +2,6 @@
 #include "Constants.h"
 #include <iostream>
 
-const int radius = 40;
-
-const long double PI = 3.141592653589793238463; //evtl. ug. falls ungenau, mehr dezimalen benötigt
 
 std::vector<wire_part> Wire_parts::ring()
 {
