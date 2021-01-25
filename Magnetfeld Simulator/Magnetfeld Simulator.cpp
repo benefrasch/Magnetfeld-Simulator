@@ -12,13 +12,13 @@ int main()
 {
 
 	long double x = 0.5, 
-				y = 0.5;
+				y = 0.48;
 
-	bmp.set_pixel((simulation_size_x / 2)*(image_size_x / simulation_size_x), (long float)(simulation_size_y / 2 - radius)*(image_size_y / simulation_size_y), 255, 0, 0, 255);
-	bmp.set_pixel((simulation_size_x / 2)*(image_size_x / simulation_size_x), (long float)(simulation_size_y / 2 + radius)*(image_size_y / simulation_size_y), 255, 0, 0, 255);
+	bmp.set_pixel((simulation_size_x / 2)*(image_size_x / simulation_size_x), (float)(simulation_size_y / 2 - radius)*(image_size_y / simulation_size_y), 255, 0, 0, 255);
+	bmp.set_pixel((simulation_size_x / 2)*(image_size_x / simulation_size_x), (float)(simulation_size_y / 2 + radius)*(image_size_y / simulation_size_y), 255, 0, 0, 255);
 
 	std::vector<wire_part> parts = Wire_parts::ring();
-	for (int i = 0; i < 10000; ++i) {
+	for (int i = 0; i < 1000; ++i) {
 		Vektor b_vektor = B_Vektor::vektor(&parts,x, y, simulation_size_z/2);
 		x += b_vektor.x; y += b_vektor.y;
 		bmp.set_pixel(x * (image_size_x / simulation_size_x), y * (image_size_y / simulation_size_y), 255, 255, 255, 255);
