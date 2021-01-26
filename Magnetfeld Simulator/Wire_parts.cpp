@@ -18,7 +18,6 @@ std::vector<wire_part> Wire_parts::ring()
 			(long double)current_part / simulation_wire_parts_count * 2 * PI,
 			(radius * 2 * PI) / simulation_wire_parts_count,
 		};
-		//std::cout << temp.x << "  " << temp.y << "  " << temp.z << "\n";
 		wire_part_vector.push_back(temp);
 	}
 

@@ -44,19 +44,25 @@ int main()
 	std::vector<wire_part> parts = Wire_parts::ring();
 
 	std::vector<long double> start_y_values;
-	for (long double y_start = (double)simulation_size_y / 2 - radius + 0.01; y_start <= (double)simulation_size_y / 2 + radius - 0.01; y_start += step_size) {
-		Vektor b_vektor = B_Vektor::vektor(&parts, simulation_size_x / 2, y_start, simulation_size_z / 2);
-		for (long double y_value = y_start; y_value < y_start + step_size; y_value += (long double)1 / (-2000000 * b_vektor.x)) { //adjusts itaration size so there are more start points for a stronger field
-			start_y_values.push_back(y_value);
-		}
+	long double first_step = step_size * -(B_Vektor::vektor(&parts, simulation_size_x / 2, simulation_size_y / 2, simulation_size_z / 2).x);
+	std::cout << first_step << "\n";
+	for (long double y_start = simulation_size_y / 2;
+		y_start < (double)simulation_size_y / 2 + radius - 0.001;
+		y_start += first_step  / -(B_Vektor::vektor(&parts, simulation_size_x / 2, y_start, simulation_size_z / 2).x)) {
+
+		start_y_values.push_back(y_start);
+		start_y_values.push_back((simulation_size_y / 2) - (y_start - (simulation_size_y / 2)));
+		std::cout << y_start << "  " << (B_Vektor::vektor(&parts, simulation_size_x / 2, y_start, simulation_size_z / 2).x) << "\n";
 	}
+
+
 
 	std::cout << "\n starting calculation...\n\n";
 
 	std::vector<std::future<bool>> graphs;
 	for (double y_start : start_y_values)
 	{
-		std::cout << y_start << "\n";
+		std::cout << "Y-Value " << y_start << " started calculating" << "\n";
 		graphs.push_back(std::async(plot_vector, &parts, y_start, false)); //plot graph to both left and right side
 		graphs.push_back(std::async(plot_vector, &parts, y_start, true));
 	}
@@ -69,6 +75,6 @@ int main()
 	auto finish = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> elapsed = finish - start;
 
-	std::cout << "all done! Only took " << (float)elapsed.count()/60 << " minutes.";
+	std::cout << "all done! Only took " << (float)elapsed.count() / 60 << " minutes.";
 }
 
