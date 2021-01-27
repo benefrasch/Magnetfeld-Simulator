@@ -10,8 +10,8 @@ static const int image_size_y = 2000;
 
 static const float Current = 100;
 
-static const int simulation_wire_parts_count = 20;
+static const int simulation_wire_parts_count = 100;
 static const float radius = 0.04;
-static const float coil_winding_count = 20;
+static const int coil_winding_count = 20; //has to be divident of simulation_wire_parts_count
 static const float coil_total_length = 0.4;
 static const float step_size = 0.001;
