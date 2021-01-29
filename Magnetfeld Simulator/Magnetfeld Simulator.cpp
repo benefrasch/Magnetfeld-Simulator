@@ -40,8 +40,8 @@ bool plot_vector(std::vector<wire_part>* parts, long double y_start, bool invert
 
 int main() {
 
-	std::vector<wire_part> parts = Wire_parts::ring(radius);
-	//std::vector<wire_part> parts = Wire_parts::coil(radius, coil_total_length, coil_winding_count);
+	//std::vector<wire_part> parts = Wire_parts::ring(radius);
+	std::vector<wire_part> parts = Wire_parts::coil(radius, coil_total_length, coil_winding_count);
 
 	//return 0;
 
@@ -53,10 +53,14 @@ int main() {
 		y_start < (double)simulation_size / 2 + radius - 0.0001;
 		y_start += first_step / -(B_Vektor::vektor(&parts, simulation_size / 2, y_start, simulation_size / 2).x)) {
 		start_y_values.push_back(y_start);
-		start_y_values.push_back((simulation_size / 2) - (y_start - (simulation_size / 2)));
+	}
+	for (long double y_start = simulation_size / 2;
+		y_start > (double)simulation_size / 2 - radius + 0.0001;
+		y_start -= first_step / -(B_Vektor::vektor(&parts, simulation_size / 2, y_start, simulation_size / 2).x)) {
+		start_y_values.push_back(y_start);
 	}
 
-	std::cout << "\n starting calculation...\nAlso expect the calculation never to finish, but if it is above 95%, it is ok. This shit buggy. \n\n";
+	std::cout << "\n starting calculation...\n\n";
 	std::vector<std::future<bool>> graphs;
 	for (double y_start : start_y_values)
 	{
@@ -67,9 +71,9 @@ int main() {
 	do {
 		Sleep(10000);
 		std::cout << "Waiting for calculations to finish - " << done_graphs << " out of " << (graphs.size()) << " done!\n";
-		bmp.write("output.bmp");	
+		bmp.write("%userprofile%/Desktop/output.bmp");	
 	} while (done_graphs < graphs.size());
 	auto finish = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> elapsed = finish - start;
-	std::cout << "all done! Only took " << (float)elapsed.count() << " seconds.";
+	std::cout << "all done! Only took " << (int)elapsed.count() << " seconds.";
 }
