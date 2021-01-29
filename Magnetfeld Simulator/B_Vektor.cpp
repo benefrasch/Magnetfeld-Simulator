@@ -19,9 +19,9 @@ Vektor B_Vektor::vektor(std::vector<wire_part>* parts_pointer, long double x, lo
 			part.length * cos(part.rotation_z) * cos(part.rotation_x),
 		};
 		Vektor kreuzvektor = {
-			 (Current * mu0) / (4 * PI) * (wirepart.y * diff.z - wirepart.z * diff.y) / pow(r, 3) ,
-			 (Current * mu0) / (4 * PI) * (wirepart.z * diff.x - wirepart.x * diff.z) / pow(r, 3) ,
-			 (Current * mu0) / (4 * PI) * (wirepart.x * diff.y - wirepart.y * diff.x) / pow(r, 3) ,
+			(4 * PI) * (wirepart.y * diff.z - wirepart.z * diff.y) / pow(r, 3) ,
+			(4 * PI) * (wirepart.z * diff.x - wirepart.x * diff.z) / pow(r, 3) ,
+			(4 * PI) * (wirepart.x * diff.y - wirepart.y * diff.x) / pow(r, 3) ,
 		};
 
 		//std::cout << part.x << "  " << part.y << "  " << part.z << "\n";

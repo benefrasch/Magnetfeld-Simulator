@@ -7,7 +7,7 @@
 std::vector<wire_part> Wire_parts::ring(float radius)
 {
 	std::vector<wire_part> wire_part_vector = {};
-	float middle_x = simulation_size_x / 2, middle_y = simulation_size_y / 2, middle_z = simulation_size_z / 2;
+	float middle_x = simulation_size / 2, middle_y = simulation_size / 2, middle_z = simulation_size / 2;
 	for (int current_part = 0; current_part < simulation_wire_parts_count; ++current_part) {
 		wire_part temp = {
 			middle_x,
@@ -25,12 +25,12 @@ std::vector<wire_part> Wire_parts::ring(float radius)
 std::vector<wire_part> Wire_parts::coil(const float radius, const float coil_total_length, const float coil_winding_count)
 {
 	std::vector<wire_part> wire_part_vector = {};
-	const float middle_x = simulation_size_x / 2, middle_y = simulation_size_y / 2, middle_z = simulation_size_z / 2;
+	const float middle_x = simulation_size / 2, middle_y = simulation_size / 2, middle_z = simulation_size / 2;
 	const float diffx = coil_total_length / simulation_wire_parts_count;
 	const int wireparts_in_winding = simulation_wire_parts_count / coil_winding_count;
 	int current_winding_part = 0;
-	for (float x = simulation_size_x / 2 - coil_total_length / 2;
-		x <= simulation_size_x / 2 + coil_total_length / 2;
+	for (float x = simulation_size / 2 - coil_total_length / 2;
+		x <= simulation_size / 2 + coil_total_length / 2;
 		x += diffx, ++current_winding_part) {
 		if (current_winding_part == wireparts_in_winding) current_winding_part = 0;
 		wire_part temp = {
