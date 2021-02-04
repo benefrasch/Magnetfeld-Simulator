@@ -14,5 +14,5 @@ static class Wire_parts {
 
 public:
 	static std::vector<wire_part> ring(float radius);
-	static std::vector<wire_part> coil(float radius, float coil_total_length, float coil_winding_count);
+	static std::vector<wire_part> coil(float radius, float coil_total_length, int coil_winding_count);
 };

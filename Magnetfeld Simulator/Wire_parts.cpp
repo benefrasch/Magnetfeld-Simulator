@@ -22,7 +22,7 @@ std::vector<wire_part> Wire_parts::ring(float radius)
 	return wire_part_vector;
 }
 
-std::vector<wire_part> Wire_parts::coil(const float radius, const float coil_total_length, const float coil_winding_count)
+std::vector<wire_part> Wire_parts::coil(const float radius, const float coil_total_length, const int coil_winding_count)
 {
 	std::vector<wire_part> wire_part_vector = {};
 	const float middle_x = simulation_size / 2, middle_y = simulation_size / 2, middle_z = simulation_size / 2;
@@ -32,17 +32,17 @@ std::vector<wire_part> Wire_parts::coil(const float radius, const float coil_tot
 	for (float x = simulation_size / 2 - coil_total_length / 2;
 		x <= simulation_size / 2 + coil_total_length / 2;
 		x += diffx, ++current_winding_part) {
-		if (current_winding_part == wireparts_in_winding) current_winding_part = 0;
+		if (current_winding_part >= wireparts_in_winding) current_winding_part = 0;
 		wire_part temp = {
 			x,
-			middle_y - cos((long double)current_winding_part / coil_winding_count * 2 * PI) * radius,
-			middle_z + sin((long double)current_winding_part / coil_winding_count * 2 * PI) * radius,
-			0,
+			middle_y - cos((long double)current_winding_part / wireparts_in_winding * 2 * PI) * radius,
+			middle_z + sin((long double)current_winding_part / wireparts_in_winding * 2 * PI) * radius,
+			0,	//rotation still to be fixed, but i am lazy
 			(long double)current_winding_part / coil_winding_count * 2 * PI,
 			sqrt(pow(((long double)radius * 2 * PI) / coil_winding_count, 2) + pow(diffx, 2)),
 		};
 		wire_part_vector.push_back(temp);
-		std::cout << temp.x << "	" << temp.y << "	" << temp.z << "	" << temp.length << "	" << temp.rotation_x << "	" << temp.rotation_z << "\n";
+		//std::cout << temp.x << "	" << temp.y << "	" << temp.z << "	" << temp.length << "	" << temp.rotation_x << "	" << temp.rotation_z << "\n";
 	}
 	return wire_part_vector;
 }

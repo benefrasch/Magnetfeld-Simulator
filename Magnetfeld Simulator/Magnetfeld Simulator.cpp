@@ -1,5 +1,4 @@
 #include <iostream>
-#include <tuple>
 #include "BMP.h"
 #include "Wire_parts.h"
 #include "B_Vektor.h"
@@ -71,7 +70,7 @@ int main() {
 	do {
 		Sleep(10000);
 		std::cout << "Waiting for calculations to finish - " << done_graphs << " out of " << (graphs.size()) << " done!\n";
-		bmp.write("%userprofile%/Desktop/output.bmp");	
+		bmp.write("C:/Users/benef/Desktop/output.bmp");	
 	} while (done_graphs < graphs.size());
 	auto finish = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> elapsed = finish - start;

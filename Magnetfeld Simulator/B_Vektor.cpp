@@ -1,10 +1,11 @@
 #include "B_Vektor.h"
 #include "Constants.h"
-
+#include <future>
 
 Vektor B_Vektor::vektor(std::vector<wire_part>* parts_pointer, long double x, long double y, long double z)
 {
 	Vektor gesamt = { 0,0,0 };
+
 
 	for (const wire_part& part : *parts_pointer) {
 		Vektor diff = {
@@ -23,15 +24,7 @@ Vektor B_Vektor::vektor(std::vector<wire_part>* parts_pointer, long double x, lo
 			(4 * PI) * (wirepart.z * diff.x - wirepart.x * diff.z) / pow(r, 3) ,
 			(4 * PI) * (wirepart.x * diff.y - wirepart.y * diff.x) / pow(r, 3) ,
 		};
-
-		//std::cout << part.x << "  " << part.y << "  " << part.z << "\n";
-		//std::cout << wirepart.x << "  " << wirepart.y << "  " << wirepart.z << "\n";
-		//std::cout << diff.x << "  " << diff.y << "  " << diff.z << "\n";
-		//std::cout << kreuzvektor.x << "  " << kreuzvektor.y << "  " << kreuzvektor.z << "\n";
-
 		gesamt.x += kreuzvektor.x; gesamt.y += kreuzvektor.y; gesamt.z += kreuzvektor.z;
 	}
-
-
 	return gesamt;
 }
