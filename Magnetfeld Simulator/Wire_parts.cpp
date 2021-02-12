@@ -8,17 +8,21 @@ std::vector<wire_part> Wire_parts::ring(float radius)
 {
 	std::vector<wire_part> wire_part_vector = {};
 	float middle_x = simulation_size / 2, middle_y = simulation_size / 2, middle_z = simulation_size / 2;
-	for (int current_part = 0; current_part < simulation_wire_parts_count; ++current_part) {
+	long double last_x = 0, last_y = 0.46, last_z = 0.5;
+	for (int current_part = 0; current_part < simulation_wire_parts_count +1; ++current_part) {
 		wire_part temp = {
 			middle_x,
 			middle_y - cos((long double)current_part / simulation_wire_parts_count * 2 * PI) * radius,
 			middle_z + sin((long double)current_part / simulation_wire_parts_count * 2 * PI) * radius,
 			0,
-			(long double)current_part / simulation_wire_parts_count * 2 * PI,
-			((long double)radius * 2 * PI) / simulation_wire_parts_count,
+			middle_y - cos((long double)current_part / simulation_wire_parts_count * 2 * PI) * radius - last_y,
+			middle_z + sin((long double)current_part / simulation_wire_parts_count * 2 * PI) * radius - last_z,
 		};
+		last_x = temp.x, last_y = temp.y, last_z = temp.z;
 		wire_part_vector.push_back(temp);
+		//std::cout << temp.x<< "  " << temp.y << "  " << temp.z << "  " << temp.wirepart_x << "  " << temp.wirepart_y << "  " << temp.wirepart_z << "\n";
 	}
+	wire_part_vector.erase(wire_part_vector.begin());
 	return wire_part_vector;
 }
 
@@ -37,12 +41,9 @@ std::vector<wire_part> Wire_parts::coil(const float radius, const float coil_tot
 			x,
 			middle_y - cos((long double)current_winding_part / wireparts_in_winding * 2 * PI) * radius,
 			middle_z + sin((long double)current_winding_part / wireparts_in_winding * 2 * PI) * radius,
-			0,	//rotation still to be fixed, but i am lazy
-			(long double)current_winding_part / coil_winding_count * 2 * PI,
-			sqrt(pow(((long double)radius * 2 * PI) / coil_winding_count, 2) + pow(diffx, 2)),
+
 		};
 		wire_part_vector.push_back(temp);
-		//std::cout << temp.x << "	" << temp.y << "	" << temp.z << "	" << temp.length << "	" << temp.rotation_x << "	" << temp.rotation_z << "\n";
 	}
 	return wire_part_vector;
 }

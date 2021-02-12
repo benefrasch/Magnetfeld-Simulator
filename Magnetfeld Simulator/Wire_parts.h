@@ -5,9 +5,9 @@ struct wire_part
 	long double x;
 	long double y;
 	long double z;
-	long double rotation_x; //from x to y axis
-	long double rotation_z; //from y to z axis
-	long double length;
+	long double wirepart_x;
+	long double wirepart_y;
+	long double wirepart_z;
 };
 
 static class Wire_parts {

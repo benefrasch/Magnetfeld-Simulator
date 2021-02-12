@@ -39,8 +39,8 @@ bool plot_vector(std::vector<wire_part>* parts, long double y_start, bool invert
 
 int main() {
 
-	//std::vector<wire_part> parts = Wire_parts::ring(radius);
-	std::vector<wire_part> parts = Wire_parts::coil(radius, coil_total_length, coil_winding_count);
+	std::vector<wire_part> parts = Wire_parts::ring(radius);
+	//std::vector<wire_part> parts = Wire_parts::coil(radius, coil_total_length, coil_winding_count);
 
 	//return 0;
 
@@ -68,9 +68,9 @@ int main() {
 	}
 
 	do {
-		Sleep(10000);
+		Sleep(sleep_time * 1000);
 		std::cout << "Waiting for calculations to finish - " << done_graphs << " out of " << (graphs.size()) << " done!\n";
-		bmp.write("C:/Users/benef/Desktop/output.bmp");	
+		bmp.write("C:/Users/benef/Desktop/output.bmp");
 	} while (done_graphs < graphs.size());
 	auto finish = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> elapsed = finish - start;

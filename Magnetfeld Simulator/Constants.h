@@ -4,10 +4,12 @@ const int image_size = 10000;
 
 const float simulation_size = 1;
 const int simulation_wire_parts_count = 1000;
-const float step_size = 0.001; //how dense the lines get rendered
+const float step_size = 0.002; //how dense the lines get rendered
+
+const int sleep_time = 5; //update time in sec. also saves image every update. needs more time for larger images
 
 //loop specific, also for coils
 const float radius = 0.04;
 //specific for Coils, not implementet yet
-const int coil_winding_count = 1000; //has to be divident of simulation_wire_parts_count, also not working
+const int coil_winding_count = 10; //has to be divident of simulation_wire_parts_count, also not working properly
 const float coil_total_length = 0.4;
