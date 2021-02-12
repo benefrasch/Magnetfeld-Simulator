@@ -1,10 +1,10 @@
 const long double PI = 3.141592653589793238463; //evtl. ug. falls ungenau, mehr dezimalen benötigt
 
-const int image_size = 10000;
+const int image_size = 1000;
 
 const float simulation_size = 1;
-const int simulation_wire_parts_count = 1000;
-const float step_size = 0.002; //how dense the lines get rendered
+const int simulation_wire_parts_count = 10000;
+const float step_size = 0.005; //how dense the lines get rendered
 
 const int sleep_time = 5; //update time in sec. also saves image every update. needs more time for larger images
 

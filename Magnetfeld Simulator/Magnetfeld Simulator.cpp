@@ -39,8 +39,8 @@ bool plot_vector(std::vector<wire_part>* parts, long double y_start, bool invert
 
 int main() {
 
-	std::vector<wire_part> parts = Wire_parts::ring(radius);
-	//std::vector<wire_part> parts = Wire_parts::coil(radius, coil_total_length, coil_winding_count);
+	//std::vector<wire_part> parts = Wire_parts::ring(radius);
+	std::vector<wire_part> parts = Wire_parts::coil(radius, coil_total_length, coil_winding_count);
 
 	//return 0;
 
