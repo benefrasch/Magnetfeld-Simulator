@@ -8,5 +8,6 @@ class Plotting
 {
 public:
 	static void plotLines(std::vector<wire_part>* parts);
+	static void plotHeatmap(std::vector<wire_part>* parts);
 };
 

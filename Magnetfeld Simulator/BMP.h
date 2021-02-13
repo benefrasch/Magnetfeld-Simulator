@@ -4,6 +4,8 @@
 #include <stdexcept>
 #include <iostream>
 
+#pragma warning (disable: 26451 4267)
+
 #pragma pack(push, 1)
 struct BMPFileHeader {
     uint16_t file_type{ 0x4D42 };          // File type always BM which is 0x4D42 (stored as hex uint16_t in little endian)

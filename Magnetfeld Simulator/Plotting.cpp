@@ -57,4 +57,9 @@ void Plotting::plotLines(std::vector<wire_part>* parts)
 	}
 }
 
+void Plotting::plotHeatmap(std::vector<wire_part>* parts)
+{
+
+}
+
 
