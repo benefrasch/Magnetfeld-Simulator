@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="B_Vektor.cpp" />
     <ClCompile Include="Magnetfeld Simulator.cpp" />
+    <ClCompile Include="Plotting.cpp" />
     <ClCompile Include="Wire_parts.cpp" />
     <ClCompile Include="Wire_parts.h" />
   </ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="BMP.h" />
     <ClInclude Include="B_Vektor.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="Plotting.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

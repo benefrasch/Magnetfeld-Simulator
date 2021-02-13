@@ -13,6 +13,6 @@ struct Vektor
 static class B_Vektor
 {
 public:
-	 static Vektor vektor(std::vector<wire_part> * parts,long double x, long double y, long double z);
+	 static Vektor vektor(std::vector<wire_part>* parts,long double x, long double y, long double z);
 };
 
