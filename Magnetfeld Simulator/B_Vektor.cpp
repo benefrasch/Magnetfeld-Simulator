@@ -2,24 +2,24 @@
 #include "Constants.h"
 #include <future>
 
-Vektor B_Vektor::vektor(std::vector<wire_part>* parts_pointer, long double x, long double y, long double z)
+std::vector<long double> B_Vektor::vektor(std::vector<wire_part>* parts_pointer, long double x, long double y, long double z)
 {
-	Vektor gesamt = { 0,0,0 };
+	std::vector<long double> gesamt = { 0,0,0 };
 
 
 	for (const wire_part& part : *parts_pointer) {
-		Vektor diff = {
+		std::vector<long double> diff = {
 			(x - part.x) ,
 			(y - part.y) ,
 			(z - part.z) ,
 		};
-		long double r = sqrt(pow(diff.x, 2) + pow(diff.y, 2) + pow(diff.z, 2));
-		Vektor kreuzvektor = {
-			(4 * PI) * (part.wirepart_y * diff.z - part.wirepart_z * diff.y) / pow(r, 3) ,
-			(4 * PI) * (part.wirepart_z * diff.x - part.wirepart_x * diff.z) / pow(r, 3) ,
-			(4 * PI) * (part.wirepart_x * diff.y - part.wirepart_y * diff.x) / pow(r, 3) ,
+		long double r = sqrt(pow(diff[0], 2) + pow(diff[1], 2) + pow(diff[2], 2));
+		std::vector<long double> kreuzvektor = {
+			(4 * PI) * (part.wirepart_y * diff[2] - part.wirepart_z * diff[1]) / pow(r, 3) ,
+			(4 * PI) * (part.wirepart_z * diff[0] - part.wirepart_x * diff[2]) / pow(r, 3) ,
+			(4 * PI) * (part.wirepart_x * diff[1] - part.wirepart_y * diff[0]) / pow(r, 3) ,
 		};
-		gesamt.x += kreuzvektor.x; gesamt.y += kreuzvektor.y; gesamt.z += kreuzvektor.z;
+		gesamt[0] += kreuzvektor[0]; gesamt[1] += kreuzvektor[1]; gesamt[2] += kreuzvektor[2];
 	}
 	return gesamt;
 }

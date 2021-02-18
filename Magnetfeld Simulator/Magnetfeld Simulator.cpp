@@ -1,11 +1,7 @@
-#include <iostream>
-#include "BMP.h"
-#include "Wire_parts.h"
-#include "B_Vektor.h"
-#include "Constants.h"
 #include <Windows.h>
-#include <future>
-#include <chrono>
+#include <iostream>
+#include "Wire_parts.h"
+#include "Constants.h"
 #include "Plotting.h"
 
 
@@ -16,7 +12,8 @@ int main() {
 
 	auto start = std::chrono::high_resolution_clock::now();
 
-	Plotting::plotLines(&parts);
+	//Plotting::plotLines(&parts);
+	Plotting::plotField(&parts);
 
 	auto finish = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<double> elapsed = finish - start;

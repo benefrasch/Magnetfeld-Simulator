@@ -8,6 +8,6 @@ class Plotting
 {
 public:
 	static void plotLines(std::vector<wire_part>* parts);
-	static void plotHeatmap(std::vector<wire_part>* parts);
+	static void plotField(std::vector<wire_part>* parts); //not really useful, bc. high maximum and low minimum
 };
 
