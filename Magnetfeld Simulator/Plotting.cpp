@@ -7,10 +7,10 @@ bool plotLine(std::vector<wire_part>* parts, long double y_start, bool inverted)
 	long double x = simulation_size / 2,
 		y = y_start;
 	if (!inverted)
-		while (x <= simulation_size / 2 && x >= 0) {
-			std::vector<long double> b_vektor = B_Vektor::vektor(parts, x, y, simulation_size / 2);
-			long double b_value = sqrt(pow(b_vektor[0], 2) + pow(b_vektor[1], 2) + pow(b_vektor[2], 2));
-			b_vektor[0] /= b_value * image_size, b_vektor[1] /= b_value * image_size, b_vektor[2] /= b_value * image_size;
+		while (x <= simulation_size / 2 && x >= 0) { //as long as in frame and current half
+			std::vector<long double> b_vektor = B_Vektor::vektor(parts, x, y, simulation_size / 2); //get the vector for current position
+			long double b_value = sqrt(pow(b_vektor[0], 2) + pow(b_vektor[1], 2)); //total for unit vector
+			b_vektor[0] /= b_value * image_size, b_vektor[1] /= b_value * image_size;
 			x += b_vektor[0], y += b_vektor[1];
 			if (!(x<0 || x>simulation_size || y<0 || y>simulation_size))
 				bmp.set_pixel(x * (image_size / simulation_size), y * (image_size / simulation_size), 255, 255, 255, 255);
@@ -18,9 +18,9 @@ bool plotLine(std::vector<wire_part>* parts, long double y_start, bool inverted)
 	else
 		while (x >= simulation_size / 2 && x <= simulation_size) {
 			std::vector<long double> b_vektor = B_Vektor::vektor(parts, x, y, simulation_size / 2);
-			long double b_value = sqrt(pow(b_vektor[0], 2) + pow(b_vektor[1], 2) + pow(b_vektor[2], 2));
-			b_vektor[0] *= -1, b_vektor[1] *= -1, b_vektor[2] *= -1;
-			b_vektor[0] /= b_value * image_size, b_vektor[1] /= b_value * image_size, b_vektor[2] /= b_value * image_size;
+			long double b_value = sqrt(pow(b_vektor[0], 2) + pow(b_vektor[1], 2));
+			b_vektor[0] *= -1, b_vektor[1] *= -1; //make the line go to the right
+			b_vektor[0] /= b_value * image_size, b_vektor[1] /= b_value * image_size;
 			x += b_vektor[0], y += b_vektor[1];
 			if (!(x<0 || x>simulation_size || y<0 || y>simulation_size))
 				bmp.set_pixel(x * (image_size / simulation_size), y * (image_size / simulation_size), 255, 255, 255, 255);
